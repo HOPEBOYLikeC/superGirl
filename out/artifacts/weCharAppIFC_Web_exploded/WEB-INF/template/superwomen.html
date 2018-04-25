@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="gbk" name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes">
+
+    <title>星名媛</title>
+    <link rel="icon" type="image/png" href="img/微信图片_20180412114406.png"/>
+    <link rel="stylesheet" href="layui/css/layui.css"/>
+    <script src="layui/layui.js"></script>
+    <script src="jquery-3.3.1/jquery-3.3.1.js"></script>
+</head>
+<style>
+    body {
+        display: block;
+        width: 80%;
+        margin: 10px auto;
+        background-color: pink;
+    }
+
+    .layui-form-label {
+        width: 20%;
+    }
+
+</style>
+
+<body>
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="username" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系方式</label>
+        <div class="layui-input-inline">
+            <input type="text" name="phone" id="phone" lay-verify="required|phone" placeholder="请输入联系方式"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">验证码</label>
+        <div class="layui-input-inline">
+            <input type="text" name="YZM" placeholder="请输入手机验证码" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-inline">
+            <button type="button" onclick="checkPhone" class="layui-btn">获取验证码</button>
+
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">注册码</label>
+        <div class="layui-input-inline">
+            <input type="text" name="login_num" placeholder="请输入星名媛卡的8位注册码" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="regist">立即提交</button>
+        </div>
+    </div>
+</form>
+<div id="rule">
+    <p>活动规则：</p>
+    <p>1.没人只能够参加一次</p>
+    <p>2.没人只可以拉一票</p>
+</div>
+</body>
+<script>
+    //Demo
+    layui.use('form', function () {
+        var form = layui.form;
+
+
+
+        form.on('submit(regist)', function (data) {
+            layer.msg("tijaio1");
+            return false;
+        });
+    });
+
+    function checkPhone(){
+        var phone = $('phone').val();
+        niwu.ajaxRequest("/niwu/checkPhone", phone, function (res) {
+            console.log(res.jsonObject);
+        })
+    }
+</script>
+<script type="application/javascript" src="js/niwu.js"/>
+</html>
